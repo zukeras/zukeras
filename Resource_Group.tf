@@ -11,7 +11,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_resource_group" "azure-terraform" {
+resource "azurerm_resource_group" "azure-terraform_01" {
   name     = "terraform-resources"
   location = "West Europe"
 }
