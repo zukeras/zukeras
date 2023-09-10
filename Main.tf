@@ -13,7 +13,7 @@ provider "azurerm" {
 
 resource "azurerm_resource_group" "azure-terraform_01" {
   name     = "terraform-resources"
-  location = "West Europe"
+  location = "UK South"
 }
 resource "azurerm_virtual_network" "main_virtual_network" {
   name                = "main_network"
