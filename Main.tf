@@ -79,16 +79,17 @@ resource "azurerm_windows_virtual_machine" "linuxVM" {
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
   size                = "Standard_B2S"
-  admin_username      = "azureuser"
-  admin_ssh_key {
-    admin_username = "azureuser"
-    public_key = file{"./.ssh/id_rsa.pub"}
-  }
-  
+
   network_interface_ids = [
     azurerm_network_interface.linuxVM_nic.id,
   ]
 
+  admin_username = "azureuser"
+  admin_ssh_key {
+    username = "azureuser"
+    public_key = file("./.ssh/id_rsa.pub")
+  }
+  
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
