@@ -78,11 +78,11 @@ resource "azurerm_windows_virtual_machine" "linuxVM" {
   name                = "example-machine"
   resource_group_name = azurerm_resource_group.example.name
   location            = azurerm_resource_group.example.location
-  size                = "Standard_F2"
+  size                = "Standard_B2S"
   admin_username      = "azureuser"
   admin_ssh_key {
     admin_username = "azureuser"
-    public_key = "./.ssh/id_rsa.pub"
+    public_key = file{"./.ssh/id_rsa.pub"}
   }
   
   network_interface_ids = [
@@ -95,9 +95,9 @@ resource "azurerm_windows_virtual_machine" "linuxVM" {
   }
 
   source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2016-Datacenter"
+    publisher = "canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
 }
