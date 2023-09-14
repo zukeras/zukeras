@@ -102,3 +102,6 @@ resource "azurerm_windows_virtual_machine" "linuxVM" {
     version   = "latest"
   }
 }
+output "public_ip" {
+  value = azurerm_public_ip.linuxVM_ip_ip_address
+}
