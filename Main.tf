@@ -12,14 +12,14 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "azure-terraform_01" {
-  name     = "terraform-resources"
-  location = "UK South"
+  name     = var.rg_name
+  location = var.location
 }
 resource "azurerm_virtual_network" "main_virtual_network" {
   name                = "linuxVM_vn"
   location            = azurerm_resource_group.azure-terraform_01.location
   resource_group_name = azurerm_resource_group.azure-terraform_01.name
-  address_space       = ["10.1.0.0/16"]
+  address_space       = [var.vnet_address_space]
 
   subnet {
     name           = "dev_subnet"
@@ -75,7 +75,7 @@ resource "azurerm_network_interface_security_group_association" "nsg_association
 
 }
 resource "azurerm_linux_virtual_machine" "linuxVM" {
-  name                = "linuxVM"
+  name                = var.vm_name
   resource_group_name = azurerm_resource_group.azure-terraform_01.name
   location            = azurerm_resource_group.azure-terraform_01.location
   size                = "Standard_B2S"
@@ -89,6 +89,7 @@ resource "azurerm_linux_virtual_machine" "linuxVM" {
     username   = "azureuser"
     public_key = file("./.ssh/id_rsa.pub")
   }
+  disable_password_authentication = ! var.disable_password_authentification
 
   os_disk {
     caching              = "ReadWrite"
