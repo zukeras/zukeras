@@ -74,7 +74,7 @@ resource "azurerm_network_interface_security_group_association" "nsg_association
   network_security_group_id = azurerm_network_security_group.nsg_shh.id
   
 }
-resource "azurerm_windows_virtual_machine" "linuxVM" {
+resource "azurerm_linux_virtual_machine" "linuxVM" {
   name                = "example-machine"
   resource_group_name = azurerm_resource_group.azure-terraform_01.name
   location            = azurerm_resource_group.azure-terraform_01.location
