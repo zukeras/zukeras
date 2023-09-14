@@ -76,8 +76,8 @@ resource "azurerm_network_interface_security_group_association" "nsg_association
 }
 resource "azurerm_windows_virtual_machine" "linuxVM" {
   name                = "example-machine"
-  resource_group_name = azurerm_resource_group.example.name
-  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.azure-terraform_01.name
+  location            = azurerm_resource_group.azure-terraform_01.location
   size                = "Standard_B2S"
 
   network_interface_ids = [
@@ -103,5 +103,5 @@ resource "azurerm_windows_virtual_machine" "linuxVM" {
   }
 }
 output "public_ip" {
-  value = azurerm_public_ip.linuxVM_ip_ip_address
+  value = azurerm_public_ip.linuxVM_ip.ip_address
 }
