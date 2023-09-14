@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "azure-terraform_01" {
   location = "UK South"
 }
 resource "azurerm_virtual_network" "main_virtual_network" {
-  name                = "main_network"
+  name                = "linuxVM_vn"
   location            = azurerm_resource_group.azure-terraform_01.location
   resource_group_name = azurerm_resource_group.azure-terraform_01.name
   address_space       = ["10.1.0.0/16"]
@@ -70,12 +70,12 @@ resource "azurerm_network_security_group" "nsg_shh" {
   }
 }
 resource "azurerm_network_interface_security_group_association" "nsg_association" {
-  network_interface_id = azurerm_network_interface.linuxVM_nic.id
+  network_interface_id      = azurerm_network_interface.linuxVM_nic.id
   network_security_group_id = azurerm_network_security_group.nsg_shh.id
-  
+
 }
 resource "azurerm_linux_virtual_machine" "linuxVM" {
-  name                = "example-machine"
+  name                = "linuxVM"
   resource_group_name = azurerm_resource_group.azure-terraform_01.name
   location            = azurerm_resource_group.azure-terraform_01.location
   size                = "Standard_B2S"
@@ -86,10 +86,10 @@ resource "azurerm_linux_virtual_machine" "linuxVM" {
 
   admin_username = "azureuser"
   admin_ssh_key {
-    username = "azureuser"
+    username   = "azureuser"
     public_key = file("./.ssh/id_rsa.pub")
   }
-  
+
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
