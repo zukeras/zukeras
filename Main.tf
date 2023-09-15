@@ -22,12 +22,12 @@ resource "azurerm_virtual_network" "main_virtual_network" {
   address_space       = [var.vnet_address_space]
 
   subnet {
-    name           = "dev_subnet"
-    address_prefix = "10.1.1.0/24"
+    name           = var.subnet_name[0]
+    address_prefix = var.subnet_addresses[0]
   }
   subnet {
-    name           = "test_subnet"
-    address_prefix = "10.1.2.0/24"
+    name           = var.subnet_name[1]
+    address_prefix = var.subnet_addresses[1]
   }
 }
 
