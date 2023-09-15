@@ -41,3 +41,13 @@ variable "subnet_addresses" {
     default = [ "10.1.1.0/24","10.1.2.0/24" ]
   
 }
+variable "tags" {
+    type = map(string)
+    description = "Tags for resources"
+    default = {
+      "enviroment" = "DEV",
+      "project" = "NewDEVHome",
+      "team" = "Software Home"
+    }
+  
+}
