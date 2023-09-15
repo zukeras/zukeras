@@ -28,3 +28,16 @@ variable "disable_password_authentification" {
     default = true
   
 }
+
+variable "subnet_name" {
+    type = list(string)
+    description = "Names of subnets"
+    default = [ "dev_subnt","test_subnet" ]
+  
+}
+variable "subnet_addresses" {
+    type = list(string)
+    description = "Subnets addresses"
+    default = [ "10.1.1.0/24","10.1.2.0/24" ]
+  
+}
