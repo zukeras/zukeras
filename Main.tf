@@ -14,6 +14,7 @@ provider "azurerm" {
 resource "azurerm_resource_group" "azure-terraform_01" {
   name     = var.rg_name
   location = var.location
+  tags = var.tags
 }
 resource "azurerm_virtual_network" "main_virtual_network" {
   name                = "linuxVM_vn"
